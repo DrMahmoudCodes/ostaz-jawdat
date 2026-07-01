@@ -13,7 +13,7 @@ exports.handler = async function (event) {
 
   try {
     const body = JSON.parse(event.body);
-
+    console.log(JSON.stringify(body, null, 2));
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -25,7 +25,8 @@ exports.handler = async function (event) {
     });
 
     const data = await response.json();
-
+    console.log("Status:", response.status);
+    console.log("Response:", text);
     return {
       statusCode: response.status,
       headers: {
